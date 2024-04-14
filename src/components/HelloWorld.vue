@@ -17,7 +17,6 @@
           v-model="fileInput" 
           label="Upload image file" 
           :show-size="1000"
-
           prepend-icon="mdi-camera"
           accept="image/png, image/jpeg"
           :rules="rules"
@@ -35,8 +34,14 @@
 
     <!-- when loading -->
 
-    <div class="text-center mb-10">
-      {{  text }}
+    <div class="text-left" style="text-overflow: ellipsis; hyphens: auto; line-height: 1.2rem;">
+      <div class="d-flex my-4">
+        <v-chip size="default" color="orange" class="mb-5">market place</v-chip>
+        <v-chip size="default" color="orange" class="mb-5 ml-3">prompt command</v-chip>
+        <v-chip size="default" color="orange" class="mb-5 ml-3">result</v-chip>
+      </div>
+
+      <p style="font-size: 1rem;">{{  text }}</p>
     </div>
 
    <loading v-model:active="isLoading"/>
@@ -58,18 +63,15 @@ const rules = [!fileInput || !fileInput.length || fileInput[0].size < 2000000 ||
 
 
 async function fileToGenerativePart(file) {
-  const base64EncodedDataPromise = new Promise((resolve, reject) => {
+  const base64EncodedDataPromise = new Promise((resolve) => {
     const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(",")[1]);
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error)
-
-    // reader.onloadend = () => resolve(reader.result);
   });
 
 
   return {
-    inlineData: { data: await base64EncodedDataPromise, mimeType: 'image/jpg' },
+    inlineData: { data: await base64EncodedDataPromise, mimeType: file.type },
   };
 }
 
@@ -77,29 +79,29 @@ const loadInformation = async (fileInput) => {
   let result; 
 
   isLoading.value = true; 
+
   try {
+
     const ai = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_TOKEN); 
     const model = ai.getGenerativeModel({ 
-      model: 'gemini-pro', 
-      generationConfig: { temperature: 0,  maxOutputTokens: 10000,}, 
-
+      model: 'gemini-pro-vision', 
+      generationConfig: { temperature: 0,  maxOutputTokens: 100 }, 
     }); 
 
     result = await model.generateContent([
       `
-        We are expecting one of two types of images. It is either a list of items or single food item. 
-        If it is a list, write the list of items and their estimated prices using Nigeria's current inflation rate. 
-        If it is a single food item, determine the size and give the price estimate
+      We are expecting one of two types of images. It is either a list of items or single food item. 
+      If it is a list, write the list of items and their estimated prices using Nigeria's current inflation rate. 
+      If it is a single food item, determine the size and give the price estimate
       `,
-      fileInput,
-
       {
-        inlineData: fileToGenerativePart(fileInput),
-
+        inlineData: (await fileToGenerativePart(fileInput)).inlineData,
       }
     ]); 
 
-    text.value = result.response.text(); 
+    console.log(result.response);
+
+   text.value = result.response.text(); 
   }catch(error){
     text.value = error.message;
   }finally {
