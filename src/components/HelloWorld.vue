@@ -26,7 +26,7 @@
       <v-btn class="ml-4 mb-4" density="default" size="x-large" 
        prepend-icon="mdi-check-circle" @click="loadInformation(fileInput)">
         <template v-slot:prepend>
-          <v-icon color="success"></v-icon>
+          <v-icon color="orange"></v-icon>
         </template>
         Go 
       </v-btn>
