@@ -1,24 +1,36 @@
 <template>
-  <v-container>
-    <h1 class="text-center mb-8">Price_Mart</h1>
-    <p class="text-center mb-16 mx-16">
+  <v-container >
+    <div class="d-flex align-center justify-center pt-8 pb-1" >
+     <v-icon icon="mdi-cart" color="orange" size="60"/>
+      <h1 class="text-center ml-4" style="font-size: 5rem;">Price_Mart</h1>
+    </div>
+
+
+    <p class="text-center mb-16" style="line-height: 20px; font-size: 0.9rem; margin-inline: 14rem;">
       This price checker app is a great way to save money and make informed purchasing decisions. 
       It is convenient and easy to use, and it can help you find the best deals on your everyday purchases.
     </p>
-    <div class="d-flex align-center" style="margin-inline: 4rem;">
-      <!-- <v-img src="@/assets/logo.png" height="40px" /> -->
+    <div class="d-flex align-center mx-auto justify-center" >
+   
+      <div style="width: 50%;">
+        <v-file-input 
+          v-model="fileInput" 
+          label="Upload image file" 
+          :show-size="1000"
 
-      <v-file-input 
-
-        v-model="fileInput" 
-        label="Upload image file" 
-        :show-size="1000"
-        prepend-icon="mdi-camera"
-        accept="image/png, image/jpeg"
-        :rules="rules"
-        @keyup.enter="loadInformation(fileInput)"
-      />
-      <v-btn size="large" style="margin-left: 1rem;" @click="loadInformation(fileInput)">Go </v-btn>
+          prepend-icon="mdi-camera"
+          accept="image/png, image/jpeg"
+          :rules="rules"
+          @keyup.enter="loadInformation(fileInput)"
+        />
+      </div>
+      <v-btn class="ml-4 mb-4" density="default" size="x-large" 
+       prepend-icon="mdi-check-circle" @click="loadInformation(fileInput)">
+        <template v-slot:prepend>
+          <v-icon color="success"></v-icon>
+        </template>
+        Go 
+      </v-btn>
     </div>
 
     <!-- when loading -->
