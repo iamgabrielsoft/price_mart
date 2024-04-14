@@ -28,4 +28,4 @@ If you are interested in learning more about AI, or if you want to get involved 
 
 - Google AI Developers: https://developers.google.com/ai/
 
-- https://github.com/google/generative-ai-js
+- Google Generative-AI repo: https://github.com/google/generative-ai-js
