@@ -1,0 +1,3 @@
+[submodule "price_mart"]
+	path = price_mart
+	url = https://github.com/iamgabrielsoft/price_mart.git
