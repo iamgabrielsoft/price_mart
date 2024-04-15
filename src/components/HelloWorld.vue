@@ -2,17 +2,17 @@
   <v-container >
     <div class="d-flex align-center justify-center pt-8 pb-1" >
      <v-icon icon="mdi-cart" color="orange" size="60"/>
-      <h1 class="text-center ml-4" style="font-size: 5rem;">Price_Mart</h1>
+      <h1 class="text-center ml-4 md:text-sm" style="font-size: 3rem;">Price_Mart</h1>
     </div>
 
 
-    <p class="text-center mb-16" style="line-height: 20px; font-size: 0.9rem; margin-inline: 14rem;">
+    <p class="text-center mb-8 sm: m-24" style="line-height: 20px; font-size: 0.7rem; margin-inline: 2rem;">
       This price checker app is a great way to save money and make informed purchasing decisions. 
       It is convenient and easy to use, and it can help you find the best deals on your everyday purchases.
     </p>
     <div class="d-flex align-center mx-auto justify-center" >
    
-      <div style="width: 50%;">
+      <div style="width: 60%;">
         <v-file-input 
           v-model="fileInput" 
           label="Upload image file" 
@@ -34,8 +34,8 @@
 
     <!-- when loading -->
 
-    <div class="text-left" style="text-overflow: ellipsis; hyphens: auto; line-height: 1.2rem;">
-      <div class="d-flex my-4">
+    <div class="text-center" style="text-overflow: ellipsis; hyphens: auto; line-height: 1.2rem;">
+      <div class="d-flex align-center justify-center my-4">
         <v-chip size="default" color="orange" class="mb-5">market place</v-chip>
         <v-chip size="default" color="orange" class="mb-5 ml-3">prompt command</v-chip>
         <v-chip size="default" color="orange" class="mb-5 ml-3">result</v-chip>
