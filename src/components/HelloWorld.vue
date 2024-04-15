@@ -90,9 +90,9 @@ const loadInformation = async (fileInput) => {
 
     result = await model.generateContent([
       `
-      We are expecting one of two types of images. It is either a list of items or single food item. 
-      If it is a list, write the list of items and their estimated prices using Nigeria's current inflation rate. 
-      If it is a single food item, determine the size and give the price estimate
+      If this image is a list of food items, using data from the National Bureau of
+      Statistics in Nigeria, list out the food items in this image, their sizes/quantities
+      and their current prices. If it is a food item, mention its quantity and current price.
       `,
       {
         inlineData: (await fileToGenerativePart(fileInput)).inlineData,
