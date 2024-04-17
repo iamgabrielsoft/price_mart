@@ -6,9 +6,8 @@
     </div>
 
 
-    <p class="text-center mb-8 sm: m-24" style="line-height: 20px; font-size: 0.7rem; margin-inline: 2rem;">
-      This price checker app is a great way to save money and make informed purchasing decisions. 
-      It is convenient and easy to use, and it can help you find the best deals on your everyday purchases.
+    <p class="text-center mb-4 sm: m-24" style="line-height: 20px; font-size: 0.7rem; margin-inline: 6rem"<p>
+      Get up to date estimates of the prices of food items in Nigeria. Upload a picture of a food item or your market list and hit GO to get the price estimate.<br />Powered by Google Gemini Multimodal AI!
     </p>
     <div class="d-flex align-center mx-auto justify-center" >
    
@@ -85,14 +84,14 @@ const loadInformation = async (fileInput) => {
     const ai = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_TOKEN); 
     const model = ai.getGenerativeModel({ 
       model: 'gemini-pro-vision', 
-      generationConfig: { temperature: 0,  maxOutputTokens: 100 }, 
+      generationConfig: { temperature: 1,  maxOutputTokens: 1024 }, 
     }); 
 
     result = await model.generateContent([
       `
       If this image is a list of food items, using data from the National Bureau of
       Statistics in Nigeria, list out the food items in this image, their sizes/quantities
-      and their current prices. If it is a food item, mention its quantity and current price.
+      and their current prices in a table. If it is a food item, mention its quantity and current price.
       `,
       {
         inlineData: (await fileToGenerativePart(fileInput)).inlineData,
