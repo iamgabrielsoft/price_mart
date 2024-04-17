@@ -6,7 +6,7 @@
     </div>
 
 
-    <p class="text-center mb-4 sm: m-24" style="line-height: 20px; font-size: 0.7rem; margin-inline: 6rem"<p>
+    <p class="text-center mb-4 sm: m-24" style="line-height: 20px; font-size: 0.7rem; margin-inline: 6rem">
       Get up to date estimates of the prices of food items in Nigeria. Upload a picture of a food item or your market list and hit GO to get the price estimate.<br />Powered by Google Gemini Multimodal AI!
     </p>
     <div class="d-flex align-center mx-auto justify-center" >
